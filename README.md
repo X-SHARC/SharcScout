@@ -1,4 +1,4 @@
-
+<h1>SharcScout</h1>
 <b>SharcScout</b> is a scouting application that can be customized to any team. Teams can create a database in minutes with Firebase and link it to <b>SharcScout</b> to get their websites up and running for competitions. Also, <b>SharcScout</b> offers teams an online strategy board to strategize quickly before matches. Teams can use sites like GitHub, Repl.it, etc. to host <b>SharcScout</b> for free.
 
 
