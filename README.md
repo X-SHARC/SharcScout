@@ -1,5 +1,5 @@
 <h1>SharcScout</h1>
-<b>SharcScout</b> is a scouting application that can be customized to any team. Teams can create a database in minutes with Firebase and link it to <b>SharcScout</b> to get their websites up and running for competitions. Also, <b>SharcScout</b> offers teams an online strategy board to strategize quickly before matches. Teams can use sites like GitHub, Repl.it, etc. to host <b>SharcScout</b> for free.
+<b>SharcScout</b> is a scouting application that can be customized to any team's needs and wishes. Teams can create a database in minutes with Firebase and link it to <b>SharcScout</b> to get their websites up and running for competitions. Also, <b>SharcScout</b> offers teams an online strategy board to strategize quickly before matches. Teams can use sites like GitHub, Repl.it, etc. to host <b>SharcScout</b> for free.
 
 <p align="center">
 <img src="/exampleImages/homepage.jpeg" height="400px">
@@ -27,7 +27,7 @@ In the scouting page, your scouting team can simply click the “+” button and
 <img src="/exampleImages/form.jpeg" height="400px">
 </p>
 	
-Also, the form disappears when the "+" button is pressed again. In this screen, you can search a team by their team name or their team number. The submit button will list short summaries of each match your scouting team scouted. There will be more analysis features added in the near future.
+Also, the form disappears when the "+" button is pressed again. In this screen, you can search a team by their team name or their team number. The "Search" button will list short summaries of each match your scouting team scouted. There will be more analysis features added in the near future.
 
 <p align="center">
 <img src="/exampleImages/searchResults.jpeg" height="400px">
