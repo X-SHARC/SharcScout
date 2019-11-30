@@ -1,0 +1,44 @@
+@font-face {
+    font-family: shark;
+    src: url(res/fontxsharc.TTF);
+}
+
+body{
+  font-family: shark;
+  font-size: 20px;
+  background-color: rgb(0,0,0);
+  color: rgb(108, 190, 36);
+  text-align: center;
+  margin: 0;
+}
+
+button{
+    font-family: shark;
+    color: rgb(108, 190, 36);
+    background: rgba(108, 190, 36, 0.2);
+    border: 2px solid rgb(108, 190, 36);
+    font-size: 14px;
+    padding: 6px 8px;
+    cursor: pointer;
+    outline: 0;
+    width: 100px;
+    margin: 0 auto;
+
+}
+.body-container{
+   width:100%;
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+}
+
+.buttons{
+  flex-direction: column;
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  width: 30%;
+  height: auto;
+}

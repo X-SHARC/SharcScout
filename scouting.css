@@ -1,0 +1,156 @@
+ @font-face {
+    font-family: shark;
+    src: url(res/fontxsharc.TTF);
+}
+
+ body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 13px;
+      display: flex;
+      flex-direction: column;
+      max-height: 100vh;
+      font-family: shark;
+      background: black;
+      color:chartreuse;
+      text-align: center;
+      font-size: 12px;
+    }
+
+    .members-count,
+    .members-list,
+    .messages {
+      border: 1px solid #e4e4e4;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+    .messages {
+      flex-shrink: 1;
+      overflow: auto;
+    }
+    .message {
+      padding: 10px 0;
+    }
+    .message .member {
+      display: inline-block;
+    }
+    .member {
+      padding-right: 10px;
+      position: relative;
+    }
+    .message-form {
+      display: flex;
+      flex-shrink: 0;
+    }
+    .message-form__input {
+      flex-grow: 1;
+      border: 1px solid #dfdfdf;
+      padding: 10px 15px;
+      font-size: 16px;
+    }
+    .message-form__button {
+      margin: 10px;
+    }
+
+input{
+  margin: 10px;
+  border: 2px solid #18ff18;
+  background: rgba(130, 255, 130, 0.315);
+  color: white;
+  font-family: shark;
+}
+
+#numericValueChanger{
+  margin: 10px;
+  border: 2px solid #18ff18;
+  background: rgba(130, 255, 130, 0.315);
+  color: white;
+  text-decoration: none;
+  padding: 5px;
+  font-family: shark;
+}
+/*scouting try //no chat 91fdb7 709dff */
+
+.btn {
+    font-size: 30px;
+    display: block;
+    position: fixed;
+     bottom: 5%;
+     right: 5%;
+    text-decoration: none;
+    color: #FFF;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: middle;
+    overflow: hidden;
+    background-image: -webkit-linear-gradient(45deg, #043927 0%, #39ff14 100%);    
+    background-image: linear-gradient(45deg, #043927 0%, #39ff14 100%);
+    transition: .4s;
+    
+}
+
+.btn:hover{
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+
+#addTeam{
+  display: none;
+}
+
+
+
+#form-container{
+  transition: opacity 1s ease-out;
+  display: none;
+  width:100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+#scoutinginfodescription{
+  color:white;
+}
+
+#done-button{
+   font-family: shark;
+  color: rgb(108, 190, 36);
+  background: rgba(108, 190, 36, 0.2);
+  border: 2px solid rgb(108, 190, 36);
+  font-size: 14px;
+  padding: 6px 8px;
+  cursor: pointer;
+  outline: 0;
+  width: 100px;
+  margin: 0 auto;
+
+}
+
+#search-button{
+  font-family: shark;
+  color: rgb(108, 190, 36);
+  background: rgba(108, 190, 36, 0.2);
+  border: 2px solid rgb(108, 190, 36);
+  font-size: 14px;
+  padding: 6px 8px;
+  cursor: pointer;
+  outline: 0;
+  width: 100px;
+  margin: 0 auto;
+}
+
+#search{
+  margin: 25px;
+  padding: 6px 8px;
+  border: 2px solid #18ff18;
+  background: rgba(130, 255, 130, 0.315);
+  color: white;
+  font-family: shark;
+}

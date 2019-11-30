@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!--<script type='text/javascript' src='http://0.0.0.0:8080/scaledrone.js'></script>-->
+	<meta charset="utf-8">
+	<link href="scouting.css" rel="stylesheet" type="text/css" />
+
+	<meta name="viewport" content="width=device-width">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+	</script>
+
+</head>
+
+<body>
+
+	<h1 id="title">X-SHARC Scouting</h1>
+
+<!--This is the form used for match scouting -->
+	<div id="form-container">
+
+		<form class="scoutform" id="scoutingform">
+			Team Number:
+			<input type="number" id="teamnumber" placeholder="6838"><br>
+
+  Team Name:
+  <input type="text" id="teamname" placeholder="X-SHARC"><br>
+
+  Match Number:
+  <input type="number" id="matchnumber" value="0"><br>
+
+  Starting Location:
+  <input type="number" id="habstart" value="1" min="1" max="2"><br>
+
+  Succesfully Crossed Hab Line:
+  <input type="checkbox" id="habcrossed" onclick="habCross()"><br>
+
+
+  Cargo in Cargo Ship:
+    <a href="javascript:changeNumericValue(0, 'shipcargo')" id="numericValueChanger">-</a>
+  <input type="number" value="0" min="0" max="8" id="shipcargo">
+    <a href="javascript:changeNumericValue(1, 'shipcargo')" id="numericValueChanger">+</a><br>
+
+
+  Hatches in Cargo Ship:
+    <a href="javascript:changeNumericValue(0, 'shiphatch')" id="numericValueChanger">-</a>
+  <input type="number" value="0" min="0" max="8" id="shiphatch">
+    <a href="javascript:changeNumericValue(1, 'shiphatch')" id="numericValueChanger">+</a><br>
+
+
+  <div id="rocket">
+
+  Rocket 1 Cargo:
+      <a href="javascript:changeNumericValue(0, 'rocket1cargo')" id="numericValueChanger">-</a>
+  <input type="number" value="0" min="0" max="4" id="rocket1cargo">
+      <a href="javascript:changeNumericValue(1, 'rocket1cargo')" id="numericValueChanger">+</a><br>
+
+
+  Rocket 1 Hatch:
+      <a href="javascript:changeNumericValue(0, 'rocket1hatch')" id="numericValueChanger">-</a>
+  <input type="number" value="0" min="0" max="4" id="rocket1hatch">
+      <a href="javascript:changeNumericValue(1, 'rocket1hatch')" id="numericValueChanger">+</a><br>
+
+
+  Rocket 2 Cargo:
+      <a href="javascript:changeNumericValue(0, 'rocket2cargo')" id="numericValueChanger">-</a>
+  <input type="number" value="0" min="0" max="4" id="rocket2cargo">
+      <a href="javascript:changeNumericValue(1, 'rocket2cargo')" id="numericValueChanger">+</a><br>
+
+  Rocket 2 Hatch:
+      <a href="javascript:changeNumericValue(0, 'rocket2hatch')" id="numericValueChanger">-</a>
+  <input type="number" value="0" min="0" max="4" id="rocket2hatch">
+      <a href="javascript:changeNumericValue(1, 'rocket2hatch')" id="numericValueChanger">+</a><br>
+
+
+  Rocket 3 Cargo:
+      <a href="javascript:changeNumericValue(0, 'rocket3cargo')" id="numericValueChanger">-</a>
+  <input type="number" value="0" min="0" max="4" id="rocket3cargo">
+      <a href="javascript:changeNumericValue(1, 'rocket3cargo')" id="numericValueChanger">+</a> <br>
+
+  Rocket 3 Hatch:
+      <a href="javascript:changeNumericValue(0, 'rocket3hatch')" id="numericValueChanger">-</a>
+  <input type="number" value="0" min="0" max="4" id="rocket3hatch">
+      <a href="javascript:changeNumericValue(1, 'rocket3hatch')" id="numericValueChanger">+</a> <br>
+
+  </div>
+
+  Ending Location:
+  <input type="number" id="habend" value="0" min="0" max="3"><br>
+
+</form>
+
+<button onclick="updateDb();" id="done-button">Submit</button>
+
+</div>
+
+<script>
+var habcrossed = false;
+int = 0;
+
+function hideForm() {
+    document.getElementById('form-container').style.display = 'none';
+    document.getElementById('searchbar').style.display = 'block';
+    document.getElementById('title').style.display = 'block';
+
+}
+function showForm() {
+    document.getElementById('form-container').style.display = 'block';
+    document.getElementById('searchbar').style.display = 'none';
+    document.getElementById('title').style.display = 'none';
+
+}
+function form(){
+  if (int==0){
+    try{
+      for(i=0; i<=idCounter;i++){
+        document.getElementById("scoutingDiv" + i.toString()).innerHTML = "";
+      }
+    }
+    catch(err){
+      console.log(err.message);
+      //pass
+    }
+    showForm();
+    int=1;
+  }
+  else{
+    hideForm();
+    int=0;
+  }
+}
+
+function habCross(){
+   var checkBox = document.getElementById("habcrossed");
+
+  if (checkBox.checked == true){
+    habcrossed = true;
+
+  } else {
+    habcrossed = false;
+  }
+}
+
+function changeNumericValue(value, id){
+  try{
+    var htmlElement = document.getElementById(id.toString());
+    console.log(htmlElement);
+
+    if (value == 0 && htmlElement.value != 0){
+      var incrementValue = parseInt(htmlElement.value) - 1;
+      console.log(incrementValue);
+      htmlElement.value = incrementValue;
+    }
+    else if(value == 1) {
+      var decreaseValue = parseInt(htmlElement.value) + 1;
+      htmlElement.value = decreaseValue;
+    }
+  }
+  catch(err){
+    alert(err.message);
+  }
+}
+
+</script>
+
+<!--This button clears the search results and hides/shows the form based on what is on the screen.-->
+<a href="javascript:form()" class="btn">+</a>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.js"
+  integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI="
+  crossorigin="anonymous"></script>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/6.4.2/firebase-app.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/6.4.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.4.1/firebase-firestore.js"></script>
+
+
+<div id="searchbar">
+   <input type="text" id="search" placeholder="Search">
+   <button onclick="findTeam();" id="search-button">Search</button>
+</div>
+
+
+
+
+
+
+<script>
+		//change these with the config info of the database you created
+		var yourApiKey = null;
+		var yourAuthDomain = null;
+		var yourDatabaseURL = null;
+		var yourProjectId = null;
+		var yourStorageBucket = null;
+		var yourMessagingSenderId = null;
+		var yourAppId = null;
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: yourApiKey.toString(),
+    authDomain: yourAuthDomain.toString(),
+    databaseURL: yourDatabaseURL.toString(),
+    projectId: yourProjectId.toString(),
+    storageBucket: yourStorageBucket.toString(),
+    messagingSenderId: yourMessagingSenderId.toString(),
+    appId: yourAppId.toString()
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+var db = firebase.firestore();
+
+
+
+function updateDb(){
+
+  console.log("updateDb called.");
+   teamnumber = document.getElementById("teamnumber").value;
+   var teamname = document.getElementById("teamname").value;
+   matchnumber = document.getElementById("matchnumber").value;
+   habstart = document.getElementById("habstart").value;
+   shipcargo = document.getElementById("shipcargo").value;
+   shiphatch = document.getElementById("shiphatch").value;
+   rocket1cargo = document.getElementById("rocket1cargo").value;
+   rocket1hatch = document.getElementById("rocket1hatch").value;
+   rocket2cargo = document.getElementById("rocket2cargo").value;
+   rocket2hatch = document.getElementById("rocket2hatch").value;
+   rocket3cargo = document.getElementById("rocket3cargo").value;
+   rocket3hatch = document.getElementById("rocket3hatch").value;
+   habend = document.getElementById("habend").value;
+
+  db.collection("teams").add({
+    teamname: teamname.toLowerCase(),
+    teamnumber: parseInt(teamnumber),
+    matchnumber: parseInt(matchnumber),
+    habstart: parseInt(habstart),
+    habcrossed: habcrossed,
+    shipcargo: parseInt(shipcargo),
+    shiphatch: parseInt(shiphatch),
+    rocket1cargo: parseInt(rocket1cargo),
+    rocket1hatch: parseInt(rocket1hatch),
+    rocket2cargo: parseInt(rocket2cargo),
+    rocket2hatch: parseInt(rocket2hatch),
+    rocket3cargo: parseInt(rocket3cargo),
+    rocket3hatch: parseInt(rocket3hatch),
+    habend: parseInt(habend)
+  })
+  .then(function(docRef) {
+      window.location.href = "./scoutingtry.html"
+  })
+  .catch(function(error) {
+      console.error("Error adding document: ", error);
+      alert("Error adding document! View the console to see the error details.");
+  });
+
+}
+
+let idCounter = 0;
+function findTeam(){
+  try{
+    for(i=0; i<=idCounter;i++){
+      document.getElementById("scoutingDiv" + i.toString()).innerHTML = "";
+    }
+  }
+  catch(err){
+    console.log(err.message);
+    //pass
+  }
+
+  teamSearch = document.getElementById("search").value;
+  teamSearch = teamSearch.toLowerCase();
+  console.log(teamSearch);
+  var searchParamaterFirebase;
+
+  if (isNaN(parseInt(teamSearch))){
+    searchParamaterFirebase = "teamname";
+  }
+  else{
+    searchParamaterFirebase = "teamnumber";
+    teamSearch = parseInt(teamSearch);
+  }
+
+  db.collection("teams").where(searchParamaterFirebase, "==", teamSearch )
+                      .get()
+                      .then(function(querySnapshot) {
+                          querySnapshot.forEach(function(doc) {
+
+                              data = doc.data();
+
+                              var teamname = data.teamname;
+                              var teamnumber = data.teamnumber;
+                              var totalHatch = parseInt(data.shiphatch + data.rocket1hatch + rocket2hatch + rocket3hatch);
+                              var totalCargo = parseInt(data.shipcargo+data.rocket1cargo+data.rocket2cargo+data.rocket3cargo);
+                              var habstart = parseInt(data.habstart);
+                              var climb = parseInt(data.habend);
+                              var matchnumber = parseInt(data.matchnumber);
+                              var habCross = new Boolean(data.habcrossed);
+
+                              if (habCross==true){
+                                habCross= "Crossed Hab Line.";
+                              }
+                              else{
+                                habCross="Couldn't Cross Hab Line";
+                              }
+
+                              var cargoString = "Cargo Per Match Average: " + totalCargo.toString() + "  ";
+                              var hatchString = "Hatch Per Match Average: " + totalHatch.toString() + "  ";
+                              var teamString = teamname + " #" + teamnumber.toString()+ "  ";
+                              var climbString = "Climb Level: " + climb.toString()+ "  ";
+                              var matchnumberString= "Match Number: " + matchnumber.toString()+ "  ";
+                              var habStartString = "Starting Level:" + habstart.toString()+ "  ";
+                              var habCrossString = "Habline: " + habCross+ "  ";
+
+                              //create div
+                              var scoutingDivCreator = document.createElement("Div");
+                              scoutingDivCreator.id = "scoutingDiv" + idCounter.toString();
+
+                              var spacer1Element = document.createElement("P");
+                              var paragraph = document.createElement("P");
+                              var spacer2Element = document.createElement("P");
+                              var breakLn = document.createElement("br");
+                              var spacer = document.createTextNode("-------------------------------------");
+                              var teamnameChild = document.createTextNode(teamString);
+                              var matchNumberChild = document.createTextNode(matchnumberString);
+                              var breakLn1 = document.createElement("br");
+                              var hatchChild = document.createTextNode(hatchString);
+                              var cargoChild = document.createTextNode(cargoString);
+                              var breakLn2 = document.createElement("br");
+                              var climbChild = document.createTextNode(climbString);
+                              var habStartChild = document.createTextNode(habStartString);
+                              var breakLn3 = document.createElement("br");
+                              var habCrossChild = document.createTextNode(habCrossString);
+                              var breakLn4 = document.createElement("br");
+                              var breakLn5 = document.createElement("br");
+
+                              var spacer1 = document.createTextNode("-------------------------------------");
+
+
+                              spacer1Element.appendChild(spacer);
+                              paragraph.appendChild(breakLn);
+                              paragraph.appendChild(teamnameChild);
+                              paragraph.appendChild(matchNumberChild);
+                              paragraph.appendChild(breakLn1);
+
+                              paragraph.appendChild(hatchChild);
+                              paragraph.appendChild(breakLn5);
+                              paragraph.appendChild(cargoChild);
+                              paragraph.appendChild(breakLn2);
+
+                              paragraph.appendChild(climbChild);
+                              paragraph.appendChild(habStartChild);
+
+                              paragraph.appendChild(breakLn3);
+
+
+                              paragraph.appendChild(habCrossChild);
+                              paragraph.appendChild(breakLn4);
+                              spacer2Element.appendChild(spacer1);
+
+                              //You can change the colors, sizes etc. of the search results based on your team's desires.
+                              paragraph.style.padding = "5px";
+                              spacer1Element.style.color = "#18ff18";
+                              spacer2Element.style.color = "#18ff18"
+                              scoutingDivCreator.style.color = "rgb(255,255,255)";
+
+                              scoutingDivCreator.appendChild(spacer1Element);
+                              scoutingDivCreator.appendChild(paragraph);
+                              scoutingDivCreator.appendChild(spacer2Element);
+
+                              document.getElementsByTagName("body")[0].appendChild(scoutingDivCreator);
+
+                              idCounter += 1;
+                          });
+                      })
+                      .catch(function(error) {
+                          console.log("Error getting documents: ", error);
+                          alert("Error getting documents! View the console for details.")
+                      });
+}
+</script>
+
+
+
+
+
+
+</body>
+</html>
